@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMINA | Modern Minimalist E-Commerce Experience</title>
+  <meta name="description" content="Shop premium audio, wearables, footwear, tech gadgets, and designer home essentials with LUMINA. Enjoy clean design, fast checkout, and free shipping.">
+  
+  <!-- Modern Typography (Plus Jakarta Sans & Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-light">
+  
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="container announcement-content">
+      <span class="announcement-pill">LIMITED TIME OFFER</span>
+      <p class="announcement-text">
+        Get 20% off your entire order with code <button class="code-copy-btn" id="copyPromoBtn" title="Click to copy promo code">STUDENT20</button> &bull; Free express delivery on orders over $100!
+      </p>
+      <button class="announcement-close" id="closeAnnouncementBtn" aria-label="Dismiss announcement">&times;</button>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <!-- Mobile Menu Button -->
+      <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Open mobile menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Logo -->
+      <a href="#home" class="brand-logo" id="brandLogo">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <span class="brand-name">LUMINA<span class="brand-dot">.</span></span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link active" data-view="home">Home</a></li>
+          <li><a href="#products" class="nav-link" data-view="products">Shop All</a></li>
+          <li><a href="#products" class="nav-link" data-filter-category="Audio">Audio</a></li>
+          <li><a href="#products" class="nav-link" data-filter-category="Wearables">Wearables</a></li>
+          <li><a href="#products" class="nav-link" data-filter-category="Tech">Tech</a></li>
+          <li><a href="#products" class="nav-link" data-filter-category="Accessories">Accessories</a></li>
+          <li><a href="#products" class="nav-link" data-filter-category="Home">Home</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Search Bar -->
+      <div class="header-search-wrapper" id="searchWrapper">
+        <div class="search-input-box">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="search" 
+            id="globalSearchInput" 
+            placeholder="Search audio, watches, backpacks, gadgets..." 
+            autocomplete="off"
+            aria-label="Search store products"
+          >
+          <button class="search-clear-btn" id="searchClearBtn" aria-label="Clear search query" style="display: none;">&times;</button>
+        </div>
+
+        <!-- Live Search Autocomplete Dropdown -->
+        <div class="search-results-dropdown" id="searchResultsDropdown" style="display: none;">
+          <div class="search-dropdown-header">
+            <span>Quick Suggestions</span>
+            <span class="results-count-tag" id="searchQuickCount">0 results</span>
+          </div>
+          <div class="search-dropdown-list" id="searchQuickList"></div>
+          <div class="search-dropdown-footer">
+            <button class="view-all-search-btn" id="viewAllSearchBtn">View all results &rarr;</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons (Wishlist, Cart, Mobile Search trigger) -->
+      <div class="header-actions">
+        <!-- Mobile Search Toggle -->
+        <button class="action-btn mobile-search-toggle" id="mobileSearchToggle" aria-label="Toggle search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <!-- Wishlist Button -->
+        <button class="action-btn wishlist-btn" id="wishlistTriggerBtn" aria-label="View Wishlist">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="badge-count wishlist-count" id="wishlistBadge">0</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button class="action-btn cart-btn" id="cartTriggerBtn" aria-label="Open Cart Drawer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="badge-count cart-count" id="cartBadge">0</span>
+          <span class="cart-subtotal-header" id="headerCartTotal">$0.00</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Search Bar (Revealed on small screens when clicked) -->
+    <div class="mobile-search-bar" id="mobileSearchBar">
+      <div class="container">
+        <div class="search-input-box">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="search" id="mobileSearchInput" placeholder="Search products..." autocomplete="off">
+          <button class="search-clear-btn" id="mobileSearchClear">&times;</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="brand-logo">
+        <div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div>
+        <span class="brand-name">LUMINA<span class="brand-dot">.</span></span>
+      </div>
+      <button class="drawer-close-btn" id="closeMobileDrawerBtn" aria-label="Close menu">&times;</button>
+    </div>
+    <div class="mobile-drawer-body">
+      <nav class="mobile-nav">
+        <p class="mobile-nav-title">Menu</p>
+        <ul class="mobile-nav-links">
+          <li><a href="#home" class="mobile-link active" data-view="home">Home</a></li>
+          <li><a href="#products" class="mobile-link" data-view="products">All Products</a></li>
+          <li><a href="#checkout" class="mobile-link" data-view="checkout">Checkout / Buy</a></li>
+        </ul>
+        <p class="mobile-nav-title">Shop by Category</p>
+        <ul class="mobile-category-list">
+          <li><button class="mobile-cat-btn" data-category="Audio">Audio Devices</button></li>
+          <li><button class="mobile-cat-btn" data-category="Wearables">Wearables & Watches</button></li>
+          <li><button class="mobile-cat-btn" data-category="Tech">Tech & Gadgets</button></li>
+          <li><button class="mobile-cat-btn" data-category="Accessories">Bags & Accessories</button></li>
+          <li><button class="mobile-cat-btn" data-category="Footwear">Sneakers & Footwear</button></li>
+          <li><button class="mobile-cat-btn" data-category="Home">Home & Living</button></li>
+        </ul>
+      </nav>
+      <div class="mobile-drawer-promo">
+        <p class="promo-label">Active Promotion</p>
+        <p class="promo-title">20% Student & Spring Discount</p>
+        <code>STUDENT20</code>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main View Container (Switched via JS / Hash: Home, Products, Checkout) -->
+  <main id="mainContent">
+
+    <!-- ==================== VIEW 1: HOME PAGE ==================== -->
+    <section id="viewHome" class="app-view active-view">
+      
+      <!-- Hero Banner -->
+      <section class="hero-section">
+        <div class="container hero-container">
+          <div class="hero-text-col">
+            <div class="hero-badge">
+              <span class="badge-pulse"></span>
+              Spring Collection 2026 In Stock
+            </div>
+            <h1 class="hero-title">
+              Precision Crafted.<br>
+              <span class="highlight-text">Minimalist Goods</span> for Modern Life.
+            </h1>
+            <p class="hero-subtitle">
+              Elevate your daily routine with meticulously engineered tech, sound, and lifestyle essentials. Designed with clean aesthetics and pure simplicity.
+            </p>
+            <div class="hero-actions">
+              <a href="#products" class="btn btn-primary btn-lg" id="heroShopBtn">
+                Explore Catalog
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <button class="btn btn-secondary btn-lg" id="heroDealsBtn">
+                View Deals (-20%)
+              </button>
+            </div>
+            <!-- Trust badges -->
+            <div class="hero-trust-bar">
+              <div class="trust-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                <span>Free Express Shipping</span>
+              </div>
+              <div class="trust-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>2-Year Warranty</span>
+              </div>
+              <div class="trust-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                <span>30-Day Returns</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Spotlight Product Card -->
+          <div class="hero-visual-col">
+            <div class="hero-card-showcase">
+              <div class="spotlight-tag">Featured of the Month</div>
+              <div class="hero-image-wrap">
+                <img 
+                  src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80&auto=format&fit=crop" 
+                  alt="Aura Pro Wireless Headphones" 
+                  class="hero-product-img"
+                  loading="eager"
+                >
+                <div class="hero-floating-pill pill-audio">
+                  <span class="pill-dot"></span>
+                  Spatial Audio 5.3
+                </div>
+                <div class="hero-floating-pill pill-price">
+                  <span class="save-tag">SAVE $50</span>
+                  $199.99
+                </div>
+              </div>
+              <div class="hero-card-meta">
+                <div class="card-titles">
+                  <h3>Aura Pro Wireless</h3>
+                  <div class="stars-inline">
+                    <span class="star-gold">★★★★★</span>
+                    <span class="rating-num">4.9 (328 reviews)</span>
+                  </div>
+                </div>
+                <button class="btn btn-primary btn-sm quick-add-hero" data-product-id="prod-1">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Category Fast Track -->
+      <section class="section category-section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <span class="section-eyebrow">Curated Collections</span>
+              <h2 class="section-title">Shop by Category</h2>
+            </div>
+            <a href="#products" class="view-all-link" id="viewAllCategoriesLink">Browse All Collections &rarr;</a>
+          </div>
+
+          <div class="category-grid">
+            <div class="category-card" data-category="Audio">
+              <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=600&q=80&auto=format&fit=crop');"></div>
+              <div class="category-card-content">
+                <span class="cat-count">2 Items</span>
+                <h3 class="cat-title">Acoustics & Audio</h3>
+                <span class="cat-btn-pill">Explore &rarr;</span>
+              </div>
+            </div>
+
+            <div class="category-card" data-category="Wearables">
+              <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80&auto=format&fit=crop');"></div>
+              <div class="category-card-content">
+                <span class="cat-count">1 Item</span>
+                <h3 class="cat-title">Smart Wearables</h3>
+                <span class="cat-btn-pill">Explore &rarr;</span>
+              </div>
+            </div>
+
+            <div class="category-card" data-category="Tech">
+              <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&q=80&auto=format&fit=crop');"></div>
+              <div class="category-card-content">
+                <span class="cat-count">2 Items</span>
+                <h3 class="cat-title">Tech & Workspaces</h3>
+                <span class="cat-btn-pill">Explore &rarr;</span>
+              </div>
+            </div>
+
+            <div class="category-card" data-category="Accessories">
+              <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80&auto=format&fit=crop');"></div>
+              <div class="category-card-content">
+                <span class="cat-count">3 Items</span>
+                <h3 class="cat-title">Bags & Essentials</h3>
+                <span class="cat-btn-pill">Explore &rarr;</span>
+              </div>
+            </div>
+
+            <div class="category-card" data-category="Footwear">
+              <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80&auto=format&fit=crop');"></div>
+              <div class="category-card-content">
+                <span class="cat-count">2 Items</span>
+                <h3 class="cat-title">Footwear & Sneakers</h3>
+                <span class="cat-btn-pill">Explore &rarr;</span>
+              </div>
+            </div>
+
+            <div class="category-card" data-category="Home">
+              <div class="category-card-bg" style="background-image: url('https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&q=80&auto=format&fit=crop');"></div>
+              <div class="category-card-content">
+                <span class="cat-count">2 Items</span>
+                <h3 class="cat-title">Home & Living</h3>
+                <span class="cat-btn-pill">Explore &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Best Sellers Grid (Dynamic) -->
+      <section class="section featured-section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <span class="section-eyebrow">Customer Favorites</span>
+              <h2 class="section-title">Trending & Best Sellers</h2>
+            </div>
+            <a href="#products" class="view-all-link">View Full Store &rarr;</a>
+          </div>
+
+          <!-- Product Grid generated by JS -->
+          <div class="product-grid" id="homeFeaturedGrid"></div>
+        </div>
+      </section>
+
+      <!-- Promo Banner Feature -->
+      <section class="section promo-banner-section">
+        <div class="container">
+          <div class="promo-banner-card">
+            <div class="promo-text-wrap">
+              <span class="promo-pill">Student & Developer Exclusive</span>
+              <h2>Ready to upgrade your everyday setup?</h2>
+              <p>Apply code <strong>STUDENT20</strong> during checkout to unlock 20% off all flagship headphones, mechanical keyboards, and ambient lifestyle gear.</p>
+              <div class="promo-buttons">
+                <a href="#products" class="btn btn-primary btn-lg">Shop with 20% Off</a>
+                <button class="btn btn-outline-white" id="copyPromoBtn2">Copy Code: STUDENT20</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials / Social Proof -->
+      <section class="section testimonials-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-eyebrow">Verified Reviews</span>
+            <h2 class="section-title">Loved by over 15,000+ creators worldwide</h2>
+          </div>
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="star-rating">★★★★★</div>
+              <p class="quote">"The Aura Pro Wireless headphones completely blew me away. Super fast shipping, pristine white minimal packaging, and spatial audio that rivals $400 pairs."</p>
+              <div class="author-meta">
+                <div class="author-avatar">AL</div>
+                <div>
+                  <strong>Alexandre Laurent</strong>
+                  <span>Software Architect &bull; San Francisco</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="star-rating">★★★★★</div>
+              <p class="quote">"Finally an e-commerce brand that understands pure minimalist aesthetics! The checkout was seamless on my iPhone and the desk lamp is a work of art."</p>
+              <div class="author-meta">
+                <div class="author-avatar">SC</div>
+                <div>
+                  <strong>Sophia Chen</strong>
+                  <span>Interior Designer &bull; New York</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="star-rating">★★★★★</div>
+              <p class="quote">"From filtering through products to applying the student discount and receiving next-day dispatch, this is benchmark web design."</p>
+              <div class="author-meta">
+                <div class="author-avatar">MR</div>
+                <div>
+                  <strong>Marcus Reed</strong>
+                  <span>Music Producer &bull; London</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- ==================== VIEW 2: PRODUCTS CATALOG PAGE ==================== -->
+    <section id="viewProducts" class="app-view">
+      <div class="container catalog-page-container">
+        
+        <!-- Breadcrumbs & Catalog Header -->
+        <div class="catalog-page-header">
+          <div class="catalog-breadcrumbs">
+            <a href="#home">Home</a>
+            <span>/</span>
+            <span class="current">All Products</span>
+          </div>
+          <div class="catalog-title-row">
+            <div>
+              <h1 class="catalog-main-title">Store Catalog</h1>
+              <p class="catalog-subtitle" id="catalogResultsSubtitle">Showing all curated products</p>
+            </div>
+            <!-- Mobile Filter Trigger -->
+            <button class="mobile-filter-open-btn" id="openMobileFilterBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+              Filters (<span id="filterActiveCountMobile">0</span>)
+            </button>
+          </div>
+        </div>
+
+        <!-- Catalog Toolbar (Search, Active Chips, Sorting, Layout) -->
+        <div class="catalog-toolbar">
+          <!-- Active Filter Tags Container -->
+          <div class="active-filter-chips" id="activeFilterChips"></div>
+
+          <!-- Sorting Controls -->
+          <div class="catalog-controls">
+            <label for="catalogSortSelect" class="sort-label">Sort By:</label>
+            <div class="custom-select-wrapper">
+              <select id="catalogSortSelect" class="sort-select">
+                <option value="featured">Featured Picks</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+                <option value="name">Name (A-Z)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Catalog Main Layout: Sidebar Filters + Products Grid -->
+        <div class="catalog-layout">
+          
+          <!-- Filters Sidebar (Desktop) -->
+          <aside class="catalog-sidebar" id="catalogSidebar">
+            <div class="sidebar-sticky-wrap">
+              <div class="sidebar-header">
+                <h3>Filter Products</h3>
+                <button class="btn-text-link" id="resetFiltersBtn">Reset All</button>
+              </div>
+
+              <!-- Search in catalog filter -->
+              <div class="filter-group">
+                <label class="filter-label" for="filterSearchInput">Search Keywords</label>
+                <div class="search-input-box filter-search-box">
+                  <input type="text" id="filterSearchInput" placeholder="Filter by name, brand...">
+                </div>
+              </div>
+
+              <!-- Category Filter -->
+              <div class="filter-group">
+                <span class="filter-label">Categories</span>
+                <div class="filter-options-list" id="categoryFilterList">
+                  <label class="custom-checkbox">
+                    <input type="checkbox" name="category" value="all" id="catAllCheckbox" checked>
+                    <span class="checkbox-box"></span>
+                    <span class="checkbox-text">All Categories</span>
+                  </label>
+                  <label class="custom-checkbox">
+                    <input type="checkbox" name="category" value="Audio">
+                    <span class="checkbox-box"></span>
+                    <span class="checkbox-text">Audio</span>
+                  </label>
+                  <label class="custom-checkbox">
+                    <input type="checkbox" name="category" value="Wearables">
+                    <span class="checkbox-box"></span>
+                    <span class="checkbox-text">Wearables</span>
+                  </label>
+                  <label class="custom-checkbox">
+                    <input type="checkbox" name="category" value="Tech">
+                    <span class="checkbox-box"></span>
+                    <span class="checkbox-text">Tech & Gadgets</span>
+                  </label>
+                  <label class="custom-checkbox">
+                    <input type="checkbox" name="category" value="Accessories">
+                    <span class="checkbox-box"></span>
+                    <span class="checkbox-text">Accessories</span>
+                  </label>
+                  <label class="custom-checkbox">
+                    <input type="checkbox" name="category" value="Footwear">
+                    <span class="checkbox-box"></span>
+                    <span class="checkbox-text">Footwear</span>
+                  </label>
+                  <label class="custom-checkbox">
+                    <input type="checkbox" name="category" value="Home">
+                    <span class="checkbox-box"></span>
+                    <span class="checkbox-text">Home & Living</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Price Range Filter -->
+              <div class="filter-group">
+                <div class="filter-label-flex">
+                  <span class="filter-label">Max Price</span>
+                  <span class="price-val-badge" id="priceRangeValue">$300</span>
+                </div>
+                <input 
+                  type="range" 
+                  id="priceRangeSlider" 
+                  min="40" 
+                  max="300" 
+                  step="10" 
+                  value="300" 
+                  class="custom-range-slider"
+                >
+                <div class="price-limits">
+                  <span>$40</span>
+                  <span>$300+</span>
+                </div>
+              </div>
+
+              <!-- Rating Filter -->
+              <div class="filter-group">
+                <span class="filter-label">Minimum Rating</span>
+                <div class="rating-filter-options">
+                  <label class="custom-radio">
+                    <input type="radio" name="minRating" value="0" checked>
+                    <span class="radio-box"></span>
+                    <span class="radio-text">All Ratings</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="radio" name="minRating" value="4.8">
+                    <span class="radio-box"></span>
+                    <span class="radio-text">★ 4.8 & Above</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="radio" name="minRating" value="4.7">
+                    <span class="radio-box"></span>
+                    <span class="radio-text">★ 4.7 & Above</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="radio" name="minRating" value="4.5">
+                    <span class="radio-box"></span>
+                    <span class="radio-text">★ 4.5 & Above</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- In-Stock Filter -->
+              <div class="filter-group">
+                <label class="custom-toggle">
+                  <input type="checkbox" id="inStockToggle">
+                  <span class="toggle-slider"></span>
+                  <span class="toggle-text">In-Stock Only</span>
+                </label>
+              </div>
+
+            </div>
+          </aside>
+
+          <!-- Products Listing Column -->
+          <div class="catalog-products-col">
+            <!-- Products Grid Container -->
+            <div class="product-grid" id="catalogProductGrid"></div>
+
+            <!-- Empty State (Hidden when items exist) -->
+            <div class="empty-state-card" id="catalogEmptyState" style="display: none;">
+              <div class="empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+              </div>
+              <h3>No matching products found</h3>
+              <p>We couldn't find any items matching your current filters or search query. Try broadening your criteria or reset filters.</p>
+              <button class="btn btn-primary" id="emptyStateResetBtn">Clear All Filters</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: CHECKOUT & BUY PAGE ==================== -->
+    <section id="viewCheckout" class="app-view">
+      <div class="container checkout-container">
+        
+        <div class="checkout-breadcrumbs">
+          <a href="#home">Home</a>
+          <span>/</span>
+          <a href="#products">Shop</a>
+          <span>/</span>
+          <span class="current">Secure Checkout</span>
+        </div>
+
+        <h1 class="checkout-title">Express Checkout</h1>
+        <p class="checkout-subtitle">Complete your order with 256-bit SSL encrypted security.</p>
+
+        <div class="checkout-layout">
+          
+          <!-- Checkout Steps & Form (Left Col) -->
+          <div class="checkout-form-col">
+            
+            <!-- Express Payment Quick Buttons -->
+            <div class="express-checkout-box">
+              <span class="express-label">INSTANT EXPRESS CHECKOUT</span>
+              <div class="express-btn-grid">
+                <button type="button" class="btn-express btn-apple-pay" id="expressAppleBtn">
+                  <span> Pay</span>
+                </button>
+                <button type="button" class="btn-express btn-google-pay" id="expressGoogleBtn">
+                  <span>G Pay</span>
+                </button>
+                <button type="button" class="btn-express btn-paypal" id="expressPaypalBtn">
+                  <span>PayPal</span>
+                </button>
+              </div>
+              <div class="divider-text"><span>OR CONTINUE WITH SHIPPING ADDRESS</span></div>
+            </div>
+
+            <!-- Main Order Form -->
+            <form id="checkoutForm" novalidate>
+              
+              <!-- Step 1: Customer Contact -->
+              <div class="checkout-card">
+                <div class="card-step-badge">1</div>
+                <div class="card-step-content">
+                  <h3 class="step-title">Customer Contact</h3>
+                  <div class="form-grid">
+                    <div class="form-group full-width">
+                      <label for="checkoutEmail">Email Address <span class="required">*</span></label>
+                      <input type="email" id="checkoutEmail" placeholder="you@example.com" required>
+                      <span class="form-error" id="emailError">Please enter a valid email address</span>
+                    </div>
+                    <div class="form-group full-width">
+                      <label for="checkoutPhone">Phone Number <span class="required">*</span></label>
+                      <input type="tel" id="checkoutPhone" placeholder="+1 (555) 000-0000" required>
+                      <span class="form-error" id="phoneError">Please enter your phone number</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: Shipping Destination -->
+              <div class="checkout-card">
+                <div class="card-step-badge">2</div>
+                <div class="card-step-content">
+                  <h3 class="step-title">Shipping Address</h3>
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label for="firstName">First Name <span class="required">*</span></label>
+                      <input type="text" id="firstName" placeholder="Jane" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="lastName">Last Name <span class="required">*</span></label>
+                      <input type="text" id="lastName" placeholder="Doe" required>
+                    </div>
+                    <div class="form-group full-width">
+                      <label for="streetAddress">Street Address <span class="required">*</span></label>
+                      <input type="text" id="streetAddress" placeholder="123 Minimalist Blvd, Apt 4B" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="city">City <span class="required">*</span></label>
+                      <input type="text" id="city" placeholder="San Francisco" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="state">State / Province <span class="required">*</span></label>
+                      <input type="text" id="state" placeholder="California" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="zipCode">Postal / ZIP Code <span class="required">*</span></label>
+                      <input type="text" id="zipCode" placeholder="94107" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="country">Country <span class="required">*</span></label>
+                      <select id="country" required>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="AU">Australia</option>
+                        <option value="IN">India</option>
+                        <option value="DE">Germany</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3: Shipping Method Selection -->
+              <div class="checkout-card">
+                <div class="card-step-badge">3</div>
+                <div class="card-step-content">
+                  <h3 class="step-title">Shipping Method</h3>
+                  <div class="shipping-methods-list">
+                    <label class="shipping-method-option selected">
+                      <input type="radio" name="shippingMethod" value="standard" checked>
+                      <div class="method-details">
+                        <strong>Standard Ground (3 - 5 business days)</strong>
+                        <span>Tracked eco-friendly package delivery</span>
+                      </div>
+                      <span class="method-price" id="shippingStandardPrice">FREE</span>
+                    </label>
+
+                    <label class="shipping-method-option">
+                      <input type="radio" name="shippingMethod" value="express">
+                      <div class="method-details">
+                        <strong>LUMINA Priority Express (1 - 2 business days)</strong>
+                        <span>Air freight with signature on delivery</span>
+                      </div>
+                      <span class="method-price">$14.99</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Payment Details -->
+              <div class="checkout-card">
+                <div class="card-step-badge">4</div>
+                <div class="card-step-content">
+                  <h3 class="step-title">Payment Method</h3>
+
+                  <!-- Payment Type Tabs -->
+                  <div class="payment-tabs">
+                    <button type="button" class="pay-tab active" data-pay="card">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                      Credit / Debit Card
+                    </button>
+                    <button type="button" class="pay-tab" data-pay="upi">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="7" y="7" width="3" height="3"></rect><rect x="14" y="7" width="3" height="3"></rect><rect x="7" y="14" width="3" height="3"></rect></svg>
+                      UPI / Instant QR
+                    </button>
+                    <button type="button" class="pay-tab" data-pay="cod">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg>
+                      Cash on Delivery
+                    </button>
+                  </div>
+
+                  <!-- Card Fields -->
+                  <div class="pay-panel active" id="panelCard">
+                    <div class="form-grid">
+                      <div class="form-group full-width">
+                        <label for="cardNumber">Card Number</label>
+                        <div class="card-input-wrap">
+                          <input type="text" id="cardNumber" placeholder="4532 &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 8920" maxlength="19">
+                          <span class="card-brand-icon">💳</span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="cardExpiry">Expiration (MM/YY)</label>
+                        <input type="text" id="cardExpiry" placeholder="08/28" maxlength="5">
+                      </div>
+                      <div class="form-group">
+                        <label for="cardCvc">Security CVC</label>
+                        <input type="text" id="cardCvc" placeholder="842" maxlength="4">
+                      </div>
+                      <div class="form-group full-width">
+                        <label for="cardName">Cardholder Name</label>
+                        <input type="text" id="cardName" placeholder="Jane Doe">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- UPI Panel -->
+                  <div class="pay-panel" id="panelUpi" style="display: none;">
+                    <div class="upi-box">
+                      <p>Enter your Virtual Payment Address (VPA) / UPI ID:</p>
+                      <div class="form-group full-width">
+                        <input type="text" id="upiId" placeholder="name@oksbi or mobile@upi">
+                      </div>
+                      <p class="upi-hint">A payment request will be sent directly to your phone's UPI app.</p>
+                    </div>
+                  </div>
+
+                  <!-- COD Panel -->
+                  <div class="pay-panel" id="panelCod" style="display: none;">
+                    <div class="cod-box">
+                      <p><strong>Cash on Delivery selected.</strong></p>
+                      <p>You can pay via cash or UPI to the courier when your package arrives at your doorstep.</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary btn-block btn-lg" id="placeOrderBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                Confirm & Place Order (<span id="btnOrderTotal">$0.00</span>)
+              </button>
+              <p class="security-guarantee-note">
+                🔒 Guaranteed Safe & Secure Checkout &bull; 256-Bit SSL Encryption
+              </p>
+            </form>
+          </div>
+
+          <!-- Checkout Order Summary (Right Col) -->
+          <div class="checkout-summary-col">
+            <div class="order-summary-card">
+              <h3 class="summary-card-title">Order Summary</h3>
+              
+              <!-- Items list inside checkout -->
+              <div class="checkout-items-list" id="checkoutItemsList"></div>
+
+              <!-- Promo Code Input in Checkout -->
+              <div class="checkout-promo-box">
+                <div class="promo-input-row">
+                  <input type="text" id="checkoutPromoInput" placeholder="Promo code (e.g. STUDENT20)">
+                  <button type="button" class="btn btn-secondary btn-sm" id="checkoutApplyPromoBtn">Apply</button>
+                </div>
+                <div class="promo-feedback" id="checkoutPromoFeedback"></div>
+              </div>
+
+              <!-- Price Breakdown -->
+              <div class="price-breakdown">
+                <div class="breakdown-row">
+                  <span>Subtotal</span>
+                  <span id="checkoutSubtotal">$0.00</span>
+                </div>
+                <div class="breakdown-row discount-row" id="checkoutDiscountRow" style="display: none;">
+                  <span>Discount Promo (<span id="checkoutDiscountTag"></span>)</span>
+                  <span id="checkoutDiscountAmount">-$0.00</span>
+                </div>
+                <div class="breakdown-row">
+                  <span>Shipping</span>
+                  <span id="checkoutShippingAmount">Free</span>
+                </div>
+                <div class="breakdown-row">
+                  <span>Estimated Tax (8%)</span>
+                  <span id="checkoutTaxAmount">$0.00</span>
+                </div>
+                <div class="breakdown-divider"></div>
+                <div class="breakdown-row total-row">
+                  <strong>Total Amount</strong>
+                  <strong class="total-price-large" id="checkoutTotalAmount">$0.00</strong>
+                </div>
+              </div>
+
+              <div class="summary-perks">
+                <div class="perk-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>30-Day Money Back Guarantee</span>
+                </div>
+                <div class="perk-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Free Return Shipping Label Included</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== SLIDE-OVER CART DRAWER ==================== -->
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <div class="header-title-wrap">
+        <h2>Your Shopping Bag</h2>
+        <span class="cart-drawer-item-count" id="drawerItemCount">0 items</span>
+      </div>
+      <button class="cart-close-btn" id="closeCartBtn" aria-label="Close cart">&times;</button>
+    </div>
+
+    <!-- Free Shipping Progress Meter -->
+    <div class="shipping-meter-wrap" id="shippingMeter">
+      <div class="meter-text" id="meterText">
+        Add <strong>$75.00</strong> more to unlock <strong>FREE Express Shipping</strong>!
+      </div>
+      <div class="meter-bar-track">
+        <div class="meter-bar-fill" id="meterFill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items Scrollable Container -->
+    <div class="cart-items-container" id="cartItemsContainer">
+      <!-- Items dynamically populated via JS -->
+    </div>
+
+    <!-- Cart Footer with Pricing & Checkout Action -->
+    <div class="cart-drawer-footer" id="cartFooter">
+      <!-- Promo Code Section -->
+      <div class="cart-promo-accordion">
+        <div class="promo-input-row">
+          <input type="text" id="cartPromoInput" placeholder="Discount code (e.g. STUDENT20)">
+          <button type="button" class="btn btn-secondary btn-sm" id="applyCartPromoBtn">Apply</button>
+        </div>
+        <div class="promo-feedback" id="cartPromoFeedback"></div>
+      </div>
+
+      <!-- Pricing Summary -->
+      <div class="cart-totals-breakdown">
+        <div class="total-row-line">
+          <span>Subtotal</span>
+          <span id="cartDrawerSubtotal">$0.00</span>
+        </div>
+        <div class="total-row-line discount-line" id="cartDrawerDiscountLine" style="display: none;">
+          <span>Discount Applied</span>
+          <span id="cartDrawerDiscount">-$0.00</span>
+        </div>
+        <div class="total-row-line">
+          <span>Estimated Shipping</span>
+          <span id="cartDrawerShipping">Calculated at checkout</span>
+        </div>
+        <div class="cart-divider"></div>
+        <div class="total-row-line final-total">
+          <strong>Subtotal Due</strong>
+          <strong id="cartDrawerFinalTotal">$0.00</strong>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="cart-footer-actions">
+        <button class="btn btn-primary btn-block btn-lg" id="cartProceedCheckoutBtn">
+          Checkout Now &bull; <span id="cartCheckoutPrice">$0.00</span>
+        </button>
+        <button class="btn btn-text-link btn-block" id="continueShoppingBtn">
+          Continue Browsing
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== PRODUCT DETAILS QUICK-VIEW MODAL ==================== -->
+  <div class="modal-backdrop" id="productModalBackdrop"></div>
+  <div class="product-modal" id="productModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="modal-close-btn" id="closeProductModalBtn" aria-label="Close product view">&times;</button>
+    
+    <div class="modal-product-content" id="modalProductContent">
+      <!-- Dynamic product details injected via JS -->
+    </div>
+  </div>
+
+  <!-- ==================== WISHLIST DRAWER ==================== -->
+  <div class="wishlist-backdrop" id="wishlistBackdrop"></div>
+  <aside class="wishlist-drawer" id="wishlistDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="header-title-wrap">
+        <h2>Your Saved Wishlist</h2>
+        <span class="badge-count-static" id="wishlistDrawerCount">0 items</span>
+      </div>
+      <button class="drawer-close-btn" id="closeWishlistBtn" aria-label="Close wishlist">&times;</button>
+    </div>
+    <div class="wishlist-body" id="wishlistItemsContainer">
+      <!-- Populated via JS -->
+    </div>
+  </aside>
+
+  <!-- ==================== ORDER CONFIRMATION MODAL ==================== -->
+  <div class="modal-backdrop" id="orderSuccessBackdrop"></div>
+  <div class="order-success-modal" id="orderSuccessModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="success-icon-wrap">
+      <div class="success-checkmark">✓</div>
+    </div>
+    <span class="success-pill">Order Confirmed!</span>
+    <h2 class="order-success-title">Thank you for your order!</h2>
+    <p class="order-success-msg">
+      We've sent an order confirmation and tracking details to <strong id="successCustomerEmail">you@example.com</strong>.
+    </p>
+    
+    <div class="order-meta-box">
+      <div class="meta-row">
+        <span>Order Number:</span>
+        <strong id="successOrderId">#LUM-94821</strong>
+      </div>
+      <div class="meta-row">
+        <span>Payment Status:</span>
+        <span class="status-badge-paid">Paid &bull; Verified</span>
+      </div>
+      <div class="meta-row">
+        <span>Est. Delivery:</span>
+        <strong id="successDeliveryDate">Thursday, March 5</strong>
+      </div>
+      <div class="meta-row">
+        <span>Total Paid:</span>
+        <strong class="success-total" id="successOrderTotal">$0.00</strong>
+      </div>
+    </div>
+
+    <div class="order-success-actions">
+      <a href="#products" class="btn btn-primary btn-block" id="continueShoppingAfterSuccess">Continue Shopping</a>
+      <button class="btn btn-secondary btn-block" id="printReceiptBtn">Print Order Receipt</button>
+    </div>
+  </div>
+
+  <!-- ==================== MOBILE BOTTOM NAVIGATION BAR ==================== -->
+  <nav class="mobile-bottom-bar" aria-label="Mobile Bottom Navigation">
+    <a href="#home" class="bottom-nav-item active" data-view="home">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      <span>Home</span>
+    </a>
+    <a href="#products" class="bottom-nav-item" data-view="products">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+      <span>Shop</span>
+    </a>
+    <button class="bottom-nav-item" id="mobileBottomSearch">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <span>Search</span>
+    </button>
+    <button class="bottom-nav-item" id="mobileBottomWishlist">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      <span>Wishlist</span>
+      <span class="bottom-badge" id="bottomWishlistBadge">0</span>
+    </button>
+    <button class="bottom-nav-item" id="mobileBottomCart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+      <span>Cart</span>
+      <span class="bottom-badge" id="bottomCartBadge">0</span>
+    </button>
+  </nav>
+
+  <!-- ==================== TOAST NOTIFICATIONS CONTAINER ==================== -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-top-row">
+        <!-- Brand Info -->
+        <div class="footer-col brand-col">
+          <div class="brand-logo">
+            <div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div>
+            <span class="brand-name">LUMINA<span class="brand-dot">.</span></span>
+          </div>
+          <p class="brand-bio">
+            Engineered minimalist lifestyle essentials. Designing everyday technology and accessories for refined living with uncompromising standards.
+          </p>
+          <div class="payment-methods-row">
+            <span class="payment-chip">Apple Pay</span>
+            <span class="payment-chip">Google Pay</span>
+            <span class="payment-chip">Visa</span>
+            <span class="payment-chip">Mastercard</span>
+            <span class="payment-chip">UPI</span>
+          </div>
+        </div>
+
+        <!-- Links Col 1 -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Collections</h4>
+          <ul class="footer-links">
+            <li><a href="#products" data-filter-category="Audio">Audio & Acoustics</a></li>
+            <li><a href="#products" data-filter-category="Wearables">Smart Wearables</a></li>
+            <li><a href="#products" data-filter-category="Tech">Tech Accessories</a></li>
+            <li><a href="#products" data-filter-category="Accessories">Bags & Everyday Carry</a></li>
+            <li><a href="#products" data-filter-category="Home">Modern Home</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Col 2 -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="#checkout">Order Tracking</a></li>
+            <li><a href="#products">Shipping Policy</a></li>
+            <li><a href="#products">Returns & Exchanges</a></li>
+            <li><a href="#products">Warranty Information</a></li>
+            <li><a href="#products">FAQ & Help Desk</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Column -->
+        <div class="footer-col newsletter-col">
+          <h4 class="footer-heading">Join The Lumina Circle</h4>
+          <p class="newsletter-sub">Receive early product releases, editorial design stories, and exclusive member discounts.</p>
+          <form class="footer-newsletter-form" id="newsletterForm">
+            <div class="newsletter-input-group">
+              <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+            </div>
+            <span class="newsletter-note">By subscribing you agree to our Privacy Policy. No spam, ever.</span>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 LUMINA Technologies Inc. Crafted with pure HTML5, CSS3, & Modern Vanilla JS.</p>
+        <div class="footer-legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookies</a>
+          <a href="#">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
